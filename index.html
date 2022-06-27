@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+    <title>File Upload</title>
+  </head>
+  <body>
+    <div class="container my-5 ">
+        <div class="row d-flax justify-content-center">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>File Upload</h1>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <form action="http://localhost:5050/upload" method="POST" enctype="multipart/form-data">
+                                    <label for="file_upload">
+                                        <img  style="width : 150px; height: 150px; object-fit: cover; cursor: pointer; " src="https://icon-library.com/images/add-image-icon-png/add-image-icon-png-15.jpg" alt="">
+                                    </label>
+                                    <input name="user_photo" style="display: none ;" type="file" id="file_upload" multiple> <br>
+                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                </form>
+                            </div>
+                            <div class="col-lg-8" id="preview">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script>
+        const file_upload = document.getElementById('file_upload');
+        const preview = document.getElementById('preview');
+
+        file_upload.onchange = (e) => {
+
+            let images = e.target.files;
+
+            let prev = " ";
+            for (image of images ) {
+                prev += `                                
+                        <img style="width :180px; height:180px; object-fit: cover; " src="${URL.createObjectURL(image)}" alt="">`
+            }
+            preview.innerHTML = prev;
+        }
+
+
+
+
+    </script>
+    <!-- Popper.js first, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  </body>
+</html>
